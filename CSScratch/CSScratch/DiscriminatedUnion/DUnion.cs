@@ -8,6 +8,11 @@
         {
             this.UnionValue = unionValue;
         }
+
+        public override string ToString()
+        {
+            return UnionValue.ToString();
+        }
     }
 
 }

@@ -2,15 +2,12 @@ using CSScratch.DiscriminatedUnion;
 
 namespace UnitTestCSScratch.DiscriminatedUnion
 {
-    using StringOrNumber = DUnion<string, int>;
-
     public class TestUnionBasics
     {
-
         [Test]
         public void TestBasicUnion()
         {
-            var du1 = new StringOrNumber(42);
+            var du1 = new DUnion<string, int>(42);
 
             Assert.IsTrue(du1.Is(DUnionType.Of<int>()));
             Assert.That(du1.Get(DUnionType.Of<int>()), Is.EqualTo(42));
@@ -21,7 +18,7 @@ namespace UnitTestCSScratch.DiscriminatedUnion
         [Test]
         public void TestBasicUnionT2()
         {
-            var du1 = new StringOrNumber("bob");
+            var du1 = new DUnion<string, int>("bob");
 
             // The below should not compile
             //du1.Is(DUnionType.Of<double>());
@@ -30,6 +27,29 @@ namespace UnitTestCSScratch.DiscriminatedUnion
             Assert.That(du1.Get(DUnionType.Of<string>()), Is.EqualTo("bob"));
 
             Assert.IsFalse(du1.Is(DUnionType.Of<int>()));
+        }
+
+        [Test]
+        public void TestSwitch()
+        {
+            var items = new[] {
+                new DUnion<string, int, double>("bob"),
+                new DUnion<string, int, double>(42),
+                new DUnion<string, int, double>(3.14)
+            };
+
+            // this won't compile unless you supply all cases.
+            var results = items.Select(i => i.Switch(
+                s => s + ":" + s,
+                n => (n * 2).ToString(),
+                d => (d * 3).ToString()
+            )).ToArray();
+
+            Assert.That(results, Is.EquivalentTo(new[] {
+                "bob:bob",
+                "84",
+                "9.42"
+            }));
         }
     }
 }

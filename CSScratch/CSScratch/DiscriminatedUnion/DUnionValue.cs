@@ -10,6 +10,12 @@
         public abstract T Get<T>();
 
         public abstract object GetObject();
+
+        public override string ToString()
+        {
+            var o = GetObject();
+            return o == null ? "null" : o.ToString(); 
+        }
     }
 
     public class DUnionValue<T> : DUnionValue
