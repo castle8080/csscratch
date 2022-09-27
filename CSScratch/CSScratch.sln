@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32901.215
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSScratch", "CSScratch\CSScratch.csproj", "{2A6577EE-B937-42AD-A251-7B9C3052C69A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSScratch", "CSScratch\CSScratch.csproj", "{2A6577EE-B937-42AD-A251-7B9C3052C69A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestCSScratch", "UnitTestCSScratch\UnitTestCSScratch.csproj", "{5329BDBA-0428-467C-8B46-493583EF5288}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{2A6577EE-B937-42AD-A251-7B9C3052C69A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2A6577EE-B937-42AD-A251-7B9C3052C69A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2A6577EE-B937-42AD-A251-7B9C3052C69A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5329BDBA-0428-467C-8B46-493583EF5288}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5329BDBA-0428-467C-8B46-493583EF5288}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5329BDBA-0428-467C-8B46-493583EF5288}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5329BDBA-0428-467C-8B46-493583EF5288}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
