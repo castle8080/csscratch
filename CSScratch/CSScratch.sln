@@ -5,7 +5,7 @@ VisualStudioVersion = 17.3.32901.215
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSScratch", "CSScratch\CSScratch.csproj", "{2A6577EE-B937-42AD-A251-7B9C3052C69A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestCSScratch", "UnitTestCSScratch\UnitTestCSScratch.csproj", "{5329BDBA-0428-467C-8B46-493583EF5288}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTestCSScratch", "UnitTestCSScratch\UnitTestCSScratch.csproj", "{5329BDBA-0428-467C-8B46-493583EF5288}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

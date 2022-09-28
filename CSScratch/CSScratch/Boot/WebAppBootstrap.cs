@@ -21,6 +21,7 @@ namespace CSScratch.Boot
             // Add services to the container.
             builder.Services.AddControllers().AddNewtonsoftJson(options => {
                 options.SerializerSettings.AddPolymorphicJsonConverters();
+                options.SerializerSettings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore;
             });
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
