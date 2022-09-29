@@ -46,7 +46,6 @@ namespace CSScratch.Controllers
 
         [HttpGet]
         [Route("/api/v1/recommendations")]
-        [Route("/api/recommendations")]
         public IList<MediaItem> List()
         {
             return mediaItems;
@@ -54,7 +53,6 @@ namespace CSScratch.Controllers
 
         [HttpPost]
         [Route("/api/v1/recommendations")]
-        [Route("/recommendations")]
         public MediaItem Add([FromBody] MediaItem recommendation)
         {
             return recommendation;
