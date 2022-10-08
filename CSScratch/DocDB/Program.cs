@@ -1,0 +1,1 @@
+﻿await DocDB.QueryCosmos.Run();

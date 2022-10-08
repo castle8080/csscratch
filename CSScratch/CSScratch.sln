@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSScratch", "CSScratch\CSSc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTestCSScratch", "UnitTestCSScratch\UnitTestCSScratch.csproj", "{5329BDBA-0428-467C-8B46-493583EF5288}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocDB", "DocDB\DocDB.csproj", "{250E04EC-66DF-4D86-8FB3-839C5E61ABF4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{5329BDBA-0428-467C-8B46-493583EF5288}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5329BDBA-0428-467C-8B46-493583EF5288}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5329BDBA-0428-467C-8B46-493583EF5288}.Release|Any CPU.Build.0 = Release|Any CPU
+		{250E04EC-66DF-4D86-8FB3-839C5E61ABF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{250E04EC-66DF-4D86-8FB3-839C5E61ABF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{250E04EC-66DF-4D86-8FB3-839C5E61ABF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{250E04EC-66DF-4D86-8FB3-839C5E61ABF4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
