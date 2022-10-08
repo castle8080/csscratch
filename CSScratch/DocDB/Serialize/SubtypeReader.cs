@@ -5,29 +5,37 @@ using System.Reflection;
 
 namespace DocDB.Serialize
 {
-    public class SubtypeReader<BT> : JsonConverter
+    public class SubTypeReader<BT> : DynamicTypeReader<BT>
     {
-
         public string DiscriminatorField { get; }
 
         public Type[] SupportedTypes { get; }
 
-        public SubtypeReader(string discriminatorField, params Type[] supportedTypes)
+        private SubTypeReader(string discriminatorField, params Type[] supportedTypes)
         {
             this.DiscriminatorField = discriminatorField;
             this.SupportedTypes = supportedTypes;
+
+            foreach (var type in supportedTypes)
+            {
+                if (!type.IsAssignableTo(typeof(BT)))
+                {
+                    throw new ArgumentException($"{type} is not of type {typeof(BT)}");
+                }
+                else if (type == typeof(BT))
+                {
+                    throw new ArgumentException($"{typeof(BT)} can not be the same as one of the supported types, it must be a parent type.");
+                }
+                else if (type.IsAbstract || type.IsInterface)
+                {
+                    throw new ArgumentException($"Cannot convert to abstract or interface type {type}");
+                }
+            }
+
         }
 
-        public override bool CanConvert(Type objectType)
+        public override Type? ResolveConcreteType(JObject obj)
         {
-            return objectType == typeof(BT);
-        }
-
-        public override bool CanWrite => false;
-
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
-        {
-            var obj = JObject.Load(reader);
             var typeName = obj.Value<string>(DiscriminatorField);
 
             if (typeName == null)
@@ -35,24 +43,31 @@ namespace DocDB.Serialize
                 throw new InvalidOperationException($"Can not get typeName from object using field {DiscriminatorField}.");
             }
 
-            var concreteType = SupportedTypes.FirstOrDefault(t => t.Name == typeName);
-            if (concreteType == null)
-            {
-                throw new InvalidOperationException($"Can not determine type for {typeName}.");
-            }
-
-            if (objectType == concreteType)
-            {
-                throw new InvalidOperationException($"Can not deserialize using {objectType} as the actual type target.");
-            }
-
-            var objReader = new JTokenReader(obj);
-            return serializer.Deserialize(objReader, concreteType!);
+            return SupportedTypes.FirstOrDefault(t => t.Name == typeName);
         }
 
-        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+        public class Builder
         {
-            throw new NotImplementedException();
+            public string DiscriminatorField { get; set; }
+
+            private List<Type> subTypes;
+
+            public Builder(string discriminatorField = "type$")
+            {
+                this.DiscriminatorField = discriminatorField;
+                this.subTypes = new List<Type>();
+            }
+
+            public Builder WithSubType<ST>() where ST : BT
+            {
+                this.subTypes.Add(typeof(ST));
+                return this;
+            }
+
+            public SubTypeReader<BT> Build()
+            {
+                return new SubTypeReader<BT>(DiscriminatorField, subTypes.ToArray());
+            }
         }
     }
 }

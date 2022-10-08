@@ -53,12 +53,13 @@ namespace DocDB
         {
             // Creates a serializer that can deserialize media items.
             var serializer = new JsonSerializer();
-            serializer.Converters.Add(new SubtypeReader<MediaItem>(
-                "type$",
-                typeof(MusicAlbum),
-                typeof(OnlineArticle),
-                typeof(YouTubeVideo)
-            ));
+            serializer.Converters.Add(
+                new SubTypeReader<MediaItem>.Builder()
+                    .WithSubType<MusicAlbum>()
+                    .WithSubType<OnlineArticle>()
+                    .WithSubType<YouTubeVideo>()
+                    .Build()
+            );
             return serializer;
         }
 
