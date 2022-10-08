@@ -53,8 +53,13 @@ namespace DocDB
         {
             // Creates a serializer that can deserialize media items.
             var serializer = new JsonSerializer();
+
+            // This converter could be used if you didn't have type$ fields.
+            // It allows you to inspect the json object using a function.
+            //serializer.Converters.Add(new MediaItemJsonConverterReader());
+
             serializer.Converters.Add(
-                new SubTypeReader<MediaItem>.Builder()
+                new SubTypeJsonConverterReader<MediaItem>.Builder()
                     .WithSubType<MusicAlbum>()
                     .WithSubType<OnlineArticle>()
                     .WithSubType<YouTubeVideo>()

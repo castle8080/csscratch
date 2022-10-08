@@ -5,7 +5,7 @@ using System.Reflection;
 
 namespace DocDB.Serialize
 {
-    public abstract class DynamicTypeReader<T> : JsonConverter
+    public abstract class DynamicTypeJsonConverterReader<T> : JsonConverter
     {
         public override bool CanConvert(Type objectType)
         {

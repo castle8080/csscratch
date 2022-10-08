@@ -5,13 +5,13 @@ using System.Reflection;
 
 namespace DocDB.Serialize
 {
-    public class SubTypeReader<BT> : DynamicTypeReader<BT>
+    public class SubTypeJsonConverterReader<BT> : DynamicTypeJsonConverterReader<BT>
     {
         public string DiscriminatorField { get; }
 
         public Type[] SupportedTypes { get; }
 
-        private SubTypeReader(string discriminatorField, params Type[] supportedTypes)
+        private SubTypeJsonConverterReader(string discriminatorField, params Type[] supportedTypes)
         {
             this.DiscriminatorField = discriminatorField;
             this.SupportedTypes = supportedTypes;
@@ -64,9 +64,9 @@ namespace DocDB.Serialize
                 return this;
             }
 
-            public SubTypeReader<BT> Build()
+            public SubTypeJsonConverterReader<BT> Build()
             {
-                return new SubTypeReader<BT>(DiscriminatorField, subTypes.ToArray());
+                return new SubTypeJsonConverterReader<BT>(DiscriminatorField, subTypes.ToArray());
             }
         }
     }
