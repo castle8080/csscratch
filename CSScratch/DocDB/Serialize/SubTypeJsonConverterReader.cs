@@ -31,7 +31,6 @@ namespace DocDB.Serialize
                     throw new ArgumentException($"Cannot convert to abstract or interface type {type}");
                 }
             }
-
         }
 
         public override Type? ResolveConcreteType(JObject obj)
